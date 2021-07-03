@@ -14,9 +14,11 @@ private:
     uint8_t _servingsForEachPlayer;
     uint8_t _differenceToWin;
     PlayerSide _servingSide;
+    PlayerSide _lastPointSide;
     void UpdateServings();
     void ChangeServingSide();
     void Reset();
+    void UndoServings();
 
 public:
     PingPongMatch(
@@ -30,6 +32,7 @@ public:
     uint8_t GetPoints(PlayerSide side);
     PlayerSide GetServingSide();
     uint8_t GetServingNumber();
+    void UndoLastPoint();
 };
 
 #endif

@@ -13,14 +13,14 @@ class PingPongPlayer{
     //PingPongPlayer();
         PingPongPlayer(PlayerSide side);
         
-        void AddPoint(bool);
-        void SubstractPoint(bool);
+        void AddPoint();
+        void SubstractPoint();
         void Reset();
         uint8_t GetPoints();
         uint8_t GetServingNumber();
         void InitServings(uint8_t);
         void UpdateServings();
-
+        void UndoServings();
     private:
         PlayerSide _side;
 };

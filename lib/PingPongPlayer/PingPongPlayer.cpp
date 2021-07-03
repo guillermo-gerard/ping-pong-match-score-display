@@ -7,18 +7,20 @@ PingPongPlayer :: PingPongPlayer(PlayerSide side){
     _side = side;
 }
 
-void PingPongPlayer :: AddPoint(bool isServing){
+void PingPongPlayer :: AddPoint(){
     points ++;
-//    if(isServing) servingNumber --;
 }
 
-void PingPongPlayer :: SubstractPoint(bool isServing){
+void PingPongPlayer :: SubstractPoint(){
     points--;
-//    if(isServing) servingNumber ++;
 }
 
 void PingPongPlayer :: UpdateServings(){
     servingNumber --;
+}
+
+void PingPongPlayer :: UndoServings(){
+    servingNumber ++;
 }
 
 void PingPongPlayer :: Reset(){

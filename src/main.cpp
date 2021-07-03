@@ -97,7 +97,7 @@ void loop()
   }
   if (buttons == undoLastPointValue)
   {
-    //todo
+    match.UndoLastPoint();
   }
 
   if (weHaveAWinner)

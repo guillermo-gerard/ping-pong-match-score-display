@@ -2,6 +2,7 @@
 #define _PlayerSide_H
 
     enum class PlayerSide{
+        Undefined,
         Left,
         Right
     };

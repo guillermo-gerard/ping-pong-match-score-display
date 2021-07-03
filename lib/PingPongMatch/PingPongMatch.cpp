@@ -12,6 +12,7 @@ PingPongMatch ::PingPongMatch(uint8_t pointsToWin, uint8_t servingsForEachPlayer
 void PingPongMatch ::Start()
 {
     Reset();
+    _lastPointSide = PlayerSide::Undefined;
     _servingSide = PlayerSide::Left;
     _playerLeft.InitServings(_servingsForEachPlayer);
 }
@@ -24,13 +25,14 @@ void PingPongMatch ::Reset()
 
 void PingPongMatch ::AddPointTo(PlayerSide side)
 {
+    _lastPointSide = side;
     if (side == PlayerSide::Left)
     {
-        _playerLeft.AddPoint(_servingSide == PlayerSide::Left);
+        _playerLeft.AddPoint();
     }
     else
     {
-        _playerRight.AddPoint(_servingSide == PlayerSide::Right);
+        _playerRight.AddPoint();
     }
 
     UpdateServings();
@@ -83,4 +85,38 @@ void PingPongMatch ::UpdateServings()
         return;
     }
     _playerRight.UpdateServings();
+}
+
+void PingPongMatch ::UndoLastPoint()
+{
+    if (_lastPointSide == PlayerSide::Undefined || _playerLeft.GetPoints() + _playerRight.GetPoints() == 0)
+    {
+        return;
+    }
+
+    UndoServings();
+
+    if (GetServingNumber() > _servingsForEachPlayer)
+    {
+        ChangeServingSide();
+    }
+
+    if (_lastPointSide == PlayerSide::Left)
+    {
+        _playerLeft.SubstractPoint();
+    }else{
+        _playerRight.SubstractPoint();    
+    }
+    //this is done to "disable" the undo. I'm not storing any history (other than the last point side)
+    _lastPointSide = PlayerSide::Undefined;
+}
+
+void PingPongMatch ::UndoServings()
+{
+    if (_servingSide == PlayerSide::Left)
+    {
+        _playerLeft.UndoServings();
+        return;
+    }
+    _playerRight.UndoServings();
 }
