@@ -120,3 +120,23 @@ void PingPongMatch ::UndoServings()
     }
     _playerRight.UndoServings();
 }
+
+void PingPongMatch ::ChangeSides(){
+    ChangeServingSidesOnly();
+    uint8_t tempLeftPoints = _playerLeft.GetPoints();
+    _playerLeft.SetPoints(_playerRight.GetPoints());
+    _playerRight.SetPoints(tempLeftPoints);
+    
+}
+
+void PingPongMatch ::ChangeServingSidesOnly(){
+    if(_servingSide == PlayerSide::Left){
+        _servingSide = PlayerSide::Right;
+    }else{
+       _servingSide = PlayerSide::Left;
+    }
+ 
+    uint8_t tempLeftServings = _playerLeft.GetServingNumber();
+    _playerLeft.SetServingNumber(_playerRight.GetServingNumber(), _servingsForEachPlayer);
+    _playerRight.SetServingNumber(tempLeftServings, _servingsForEachPlayer);
+}

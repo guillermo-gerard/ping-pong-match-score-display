@@ -33,6 +33,8 @@ public:
     PlayerSide GetServingSide();
     uint8_t GetServingNumber();
     void UndoLastPoint();
+    void ChangeSides();
+    void ChangeServingSidesOnly();
 };
 
 #endif

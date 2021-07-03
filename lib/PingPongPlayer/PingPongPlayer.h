@@ -6,18 +6,19 @@
 
 class PingPongPlayer{
     private:
-        uint8_t points;
-        uint8_t servingNumber;
+        uint8_t _points;
+        uint8_t _servingNumber;
 
     public: 
-    //PingPongPlayer();
         PingPongPlayer(PlayerSide side);
         
         void AddPoint();
         void SubstractPoint();
         void Reset();
         uint8_t GetPoints();
+        void SetPoints(uint8_t);
         uint8_t GetServingNumber();
+        void SetServingNumber(uint8_t, uint8_t);
         void InitServings(uint8_t);
         void UpdateServings();
         void UndoServings();

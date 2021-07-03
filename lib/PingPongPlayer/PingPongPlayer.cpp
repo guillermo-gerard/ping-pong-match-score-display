@@ -3,42 +3,63 @@
 
 //PingPongPlayer :: PingPongPlayer(){}
 
-PingPongPlayer :: PingPongPlayer(PlayerSide side){
+PingPongPlayer ::PingPongPlayer(PlayerSide side)
+{
     _side = side;
 }
 
-void PingPongPlayer :: AddPoint(){
-    points ++;
+void PingPongPlayer ::AddPoint()
+{
+    _points++;
 }
 
-void PingPongPlayer :: SubstractPoint(){
-    points--;
+void PingPongPlayer ::SubstractPoint()
+{
+    _points--;
 }
 
-void PingPongPlayer :: UpdateServings(){
-    servingNumber --;
+void PingPongPlayer ::UpdateServings()
+{
+    _servingNumber--;
 }
 
-void PingPongPlayer :: UndoServings(){
-    servingNumber ++;
+void PingPongPlayer ::UndoServings()
+{
+    _servingNumber++;
 }
 
-void PingPongPlayer :: Reset(){
-    points = 0;
-    servingNumber = 0;
+void PingPongPlayer ::Reset()
+{
+    _points = 0;
+    _servingNumber = 0;
 }
 
-uint8_t PingPongPlayer :: GetPoints(){
-    return points;
+uint8_t PingPongPlayer ::GetPoints()
+{
+    return _points;
 }
 
-uint8_t PingPongPlayer :: GetServingNumber(){
-    return servingNumber;
+uint8_t PingPongPlayer ::GetServingNumber()
+{
+    return _servingNumber;
 }
 
-void PingPongPlayer :: InitServings(uint8_t servings){
-    servingNumber = servings;
+void PingPongPlayer ::InitServings(uint8_t servings)
+{
+    _servingNumber = servings;
 }
 
+void PingPongPlayer ::SetServingNumber(uint8_t number, uint8_t servingsPerPlayer){
+    if(number < 0 || number > servingsPerPlayer){
+        return;
+    }
 
+    _servingNumber = number;
+}
 
+void PingPongPlayer ::SetPoints(uint8_t points){
+    if(points < 0){
+        return;
+    }
+    _points = points;
+}

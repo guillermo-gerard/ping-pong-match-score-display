@@ -19,18 +19,21 @@ const uint8_t differenceToWin = 2;
 uint8_t lastButtonPressed = 0;
 
 const uint8_t addPointToPlayerLeftValue = 1;
-const uint8_t addPointToPlayerRightValue = 128;
+const uint8_t changeSidesValue = 2;
 const uint8_t startMatchValue = 12;
 const uint8_t undoLastPointValue = 48;
+const uint8_t changeServingSideValue = 64;
+const uint8_t addPointToPlayerRightValue = 128;
+
 /* buttons contains a byte with values of button s8s7s6s5s4s3s2s1
   HEX  :  Switch no : Binary
   0x01 : S1 Pressed  0000 0001   //add point to player left
-  0x02 : S2 Pressed  0000 0010   //
+  0x02 : S2 Pressed  0000 0010   //change sides (points and servings)
   0x04 : S3 Pressed  0000 0100   //start match (both pressed)
   0x08 : S4 Pressed  0000 1000   //start match 
   0x10 : S5 Pressed  0001 0000   //undo last point (both pressed)
   0x20 : S6 Pressed  0010 0000   //undo last point
-  0x40 : S7 Pressed  0100 0000   //
+  0x40 : S7 Pressed  0100 0000   //change servings only
   0x80 : S8 Pressed  1000 0000   //add point to player right
 */
 PingPongMatch match(pointsToWin, servingsForEachPlayer, differenceToWin);
@@ -91,13 +94,23 @@ void loop()
       winPhrase = "    Gana";
     }
   }
+
   if (buttons == startMatchValue)
   {
     StartMatch();
   }
+  
   if (buttons == undoLastPointValue)
   {
     match.UndoLastPoint();
+  }
+
+  if(buttons == changeSidesValue){
+    match.ChangeSides();
+  }
+
+  if(buttons == changeServingSideValue){
+    match.ChangeServingSidesOnly();
   }
 
   if (weHaveAWinner)
