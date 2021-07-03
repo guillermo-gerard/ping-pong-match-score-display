@@ -39,7 +39,7 @@ const uint8_t addPointToPlayerRightValue = 128;
 PingPongMatch match(pointsToWin, servingsForEachPlayer, differenceToWin);
 
 bool weHaveAWinner = false;
-char *winPhrase = "    Gana";
+char winPhrase[] = "    Gana";
 
 void HappyBirthdayPaul();
 void ClearDisplay();
@@ -82,7 +82,7 @@ void loop()
     if (match.IsWinner(PlayerSide::Left))
     {
       weHaveAWinner = true;
-      winPhrase = "Gana    ";
+      strcpy(winPhrase, "Gana    ");
     }
   }
   if (buttons == addPointToPlayerRightValue)
@@ -91,7 +91,7 @@ void loop()
     if (match.IsWinner(PlayerSide::Right))
     {
       weHaveAWinner = true;
-      winPhrase = "    Gana";
+      strcpy(winPhrase, "    Gana");
     }
   }
 
@@ -168,7 +168,7 @@ void RefreshDisplayValues()
 
   char valuesUpper[9];
   char valuesLower[5];
-  snprintf(valuesUpper, 5, "%d", match.GetPoints(PlayerSide::Left));
+  snprintf(valuesUpper, 5, "% 4d", match.GetPoints(PlayerSide::Left));
   snprintf(valuesLower, 5, "% 4d",  match.GetPoints(PlayerSide::Right)); 
   strcat(valuesUpper ,valuesLower);
   tm.displayText(valuesUpper);

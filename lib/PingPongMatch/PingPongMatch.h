@@ -10,10 +10,10 @@ class PingPongMatch
 private:
     PingPongPlayer _playerLeft;
     PingPongPlayer _playerRight;
+    PingPongPlayer * _playerServing;
     uint8_t _pointsToWin;
     uint8_t _servingsForEachPlayer;
     uint8_t _differenceToWin;
-    PlayerSide _servingSide;
     PlayerSide _lastPointSide;
     void UpdateServings();
     void ChangeServingSide();

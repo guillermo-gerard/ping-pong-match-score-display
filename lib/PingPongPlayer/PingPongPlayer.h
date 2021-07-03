@@ -15,6 +15,7 @@ class PingPongPlayer{
         void AddPoint();
         void SubstractPoint();
         void Reset();
+        PlayerSide GetSide();
         uint8_t GetPoints();
         void SetPoints(uint8_t);
         uint8_t GetServingNumber();

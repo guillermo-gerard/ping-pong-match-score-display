@@ -1,11 +1,13 @@
 #include "PingPongPlayer.h"
 #include "PlayerSide.h"
 
-//PingPongPlayer :: PingPongPlayer(){}
-
 PingPongPlayer ::PingPongPlayer(PlayerSide side)
 {
     _side = side;
+}
+
+PlayerSide PingPongPlayer :: GetSide(){
+    return _side;
 }
 
 void PingPongPlayer ::AddPoint()

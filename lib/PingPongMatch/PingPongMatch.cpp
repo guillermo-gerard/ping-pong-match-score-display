@@ -13,7 +13,7 @@ void PingPongMatch ::Start()
 {
     Reset();
     _lastPointSide = PlayerSide::Undefined;
-    _servingSide = PlayerSide::Left;
+    _playerServing = &_playerLeft;
     _playerLeft.InitServings(_servingsForEachPlayer);
 }
 
@@ -57,34 +57,29 @@ uint8_t PingPongMatch ::GetPoints(PlayerSide side)
 
 void PingPongMatch ::ChangeServingSide()
 {
-    if (_servingSide == PlayerSide::Left)
-    {
-        _servingSide = PlayerSide::Right;
-        _playerRight.InitServings(_servingsForEachPlayer);
-        return;
+    PlayerSide servingSide = _playerServing->GetSide();
+    if(servingSide == PlayerSide::Left){
+        _playerServing = &_playerRight; 
+    }else{
+        _playerServing = &_playerLeft;
     }
-    _servingSide = PlayerSide::Left;
-    _playerLeft.InitServings(_servingsForEachPlayer);
+
+    _playerServing->InitServings(_servingsForEachPlayer);
 }
 
 PlayerSide PingPongMatch ::GetServingSide()
 {
-    return _servingSide;
+    return _playerServing->GetSide();
 }
 
 uint8_t PingPongMatch ::GetServingNumber()
 {
-    return _servingSide == PlayerSide::Left ? _playerLeft.GetServingNumber() : _playerRight.GetServingNumber();
+    return _playerServing->GetServingNumber();
 }
 
 void PingPongMatch ::UpdateServings()
 {
-    if (_servingSide == PlayerSide::Left)
-    {
-        _playerLeft.UpdateServings();
-        return;
-    }
-    _playerRight.UpdateServings();
+    _playerServing->UpdateServings();
 }
 
 void PingPongMatch ::UndoLastPoint()
@@ -113,12 +108,7 @@ void PingPongMatch ::UndoLastPoint()
 
 void PingPongMatch ::UndoServings()
 {
-    if (_servingSide == PlayerSide::Left)
-    {
-        _playerLeft.UndoServings();
-        return;
-    }
-    _playerRight.UndoServings();
+    _playerServing->UndoServings();
 }
 
 void PingPongMatch ::ChangeSides(){
@@ -130,11 +120,7 @@ void PingPongMatch ::ChangeSides(){
 }
 
 void PingPongMatch ::ChangeServingSidesOnly(){
-    if(_servingSide == PlayerSide::Left){
-        _servingSide = PlayerSide::Right;
-    }else{
-       _servingSide = PlayerSide::Left;
-    }
+    _playerServing = _playerServing->GetSide() == PlayerSide::Left ?  &_playerRight : &_playerLeft;
  
     uint8_t tempLeftServings = _playerLeft.GetServingNumber();
     _playerLeft.SetServingNumber(_playerRight.GetServingNumber(), _servingsForEachPlayer);
