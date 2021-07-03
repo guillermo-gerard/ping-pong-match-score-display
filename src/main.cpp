@@ -165,7 +165,13 @@ void DisplayAlternativeUntilRestart(char *winPhrase, uint8_t leftPoints, uint8_t
 void RefreshDisplayValues()
 {
   ClearDisplay();
-  tm.DisplayDecNumNibble(match.GetPoints(PlayerSide::Left), match.GetPoints(PlayerSide::Right), true);
+
+  char valuesUpper[9];
+  char valuesLower[5];
+  snprintf(valuesUpper, 5, "%d", match.GetPoints(PlayerSide::Left));
+  snprintf(valuesLower, 5, "% 4d",  match.GetPoints(PlayerSide::Right)); 
+  strcat(valuesUpper ,valuesLower);
+  tm.displayText(valuesUpper);
 }
 
 void ClearDisplay()
