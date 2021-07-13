@@ -28,14 +28,12 @@ void CaptiveRequestHandler ::handleRequest(AsyncWebServerRequest *request)
         ESP.restart();
     }
 
-    if (request->url().compareTo("/") == 0)
+    if (LittleFS.exists(request->url()))
     {
-        request->send(LittleFS, "/config.html", String(), false);
+        Serial.println("Sending the file");
+        request->send(LittleFS, request->url(), String(), false);
         return;
     }
 
-    if (LittleFS.exists(request->url()))
-    {
-        request->send(LittleFS, request->url(), String(), false);
-    }
+    request->send(LittleFS, "/config.html", String(), false);
 }
