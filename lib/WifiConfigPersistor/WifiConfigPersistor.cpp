@@ -5,7 +5,7 @@
 #include <ArduinoJson.h>
 
 // Saves the configuration to a file
-bool WifiConfigPersistor ::Persist(Config config) //const char *filename)//, const Config &config)
+bool WifiConfigPersistor ::Persist(Config config)
 {
   LittleFS.remove(_filename);
 

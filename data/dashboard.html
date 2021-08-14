@@ -4,22 +4,36 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="refresh" content="5">
-    <title>Ping pong Match</title>
+    <title>%TITLE%</title>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
 </head>
 
 <body>
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            <h3>Ping Pong Match</h3>
+    <!-- <div class="container">
+        <div class="row">
+            <div>
+                <label for="lang" class="mx-3">%LANGUAGE%: </label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="spanish-radio" id="spanish-radio"
+                        value="option1" checked>
+                    <label class="form-check-label" for="spanish-radio">%SPANISH%</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="english-radio" id="english-radio"
+                        value="option2">
+                    <label class="form-check-label" for="english-radio">ENGLISH</label>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-4"></div>
+    </div> -->
+
+    <div class="row">
+        <h3 class="mx-auto">%TITLE%</h3>
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header">Left</div>
+            <div class="card text-white bg-primary m-3">
+                <div class="card-header">%LEFT%</div>
                 <div class="card-body">
                     <h1 class="card-title">%POINTS_LEFT%</h1>
                     <p class="card-text">%WINNER_LEFT%</p>
@@ -27,8 +41,8 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header">Right</div>
+            <div class="card text-white bg-success m-3">
+                <div class="card-header">%RIGHT%</div>
                 <div class="card-body">
                     <h1 class="card-title">%POINTS_RIGHT%</h1>
                     <p class="card-text">%WINNER_RIGHT%</p>

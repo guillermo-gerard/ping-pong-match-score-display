@@ -86,14 +86,12 @@ void setup()
   tm.displayBegin();
   tm.reset();
 
-  HappyBirthdayPaul();
-
   uint8_t buttons = tm.readButtons();
   //The captive portal will be set only if at least one button is pressed when booting
   //after the config file is saved, the esp will be restarted automatically
   if (buttons != 0)
   {
-    SetupCaptivePortalMode("esp-captive");
+    SetupCaptivePortalMode("wifi-pingpong");
     while (true)
     {
       //The only way to get out of this will be a manual reset OR to fill in the credentials (it will reboot automatically)
@@ -102,6 +100,8 @@ void setup()
     }
   }
 
+  HappyBirthdayPaul();
+  
   ConnectToWifi();
 
   StartMatch();
@@ -227,7 +227,7 @@ void ConnectToWifi()
   Serial.println(wifiConfig.pass);
 
   tm.displayText("WiFi con");
-  if (WiFi.waitForConnectResult() != WL_CONNECTED)
+  if (WiFi.waitForConnectResult(30000) != WL_CONNECTED)
   {
     Serial.println("WiFi Failed!\n");
     ClearDisplay();
